@@ -65,6 +65,7 @@ div {
 
 #chat-column-holder {
   text-align: center;
+  width: 90%;
 }
 
 .chat-column {
@@ -72,8 +73,7 @@ div {
   padding: 0.9375rem 0 0.625rem 0;
   margin: auto;
   text-align: left;
-  max-width: 25rem;
-  min-width: 9.375rem;
+  width: 100%;
 }
 
 #scrollingChat {
@@ -254,15 +254,11 @@ input:-moz-placeholder {
   color: #fff;
   overflow-x: auto;
 
-  width: 45%;
-  max-width: 32.0625rem;
-  min-width: 29.6875rem;
+  width: 0%;
 }
 
 #payload-column.full {
-  width: 100%;
-  max-width: none;
-  min-width: initial;
+  width: 0%;
 }
 
 #payload-column .header-text, #payload-column #payload-initial-message {
