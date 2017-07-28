@@ -5,10 +5,10 @@
 ## 事前準備
 
 * Bluemixアカウントの準備
-    * [Sign up](https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson) in Bluemix, or use an existing account. Your account must have available space for at least 1 app and 1 service.
-* Make sure that you have the following prerequisites installed:
-    * The [Node.js](https://nodejs.org/#download) runtime, including the [npm][npm_link] package manager
-    * The [Cloud Foundry][cloud_foundry] command-line client
+    * Bluemixアカウントを作るか(https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson) あるいは既存のBluemixアカウントを利用します。
+* 次の前提ソフトを導入します。
+    *  [Node.js](https://nodejs.org/#download) runtime, including the [npm][npm_link] package manager
+    *  [Cloud Foundry][cloud_foundry] command-line client
 
       Note: Ensure that you Cloud Foundry version is up to date
 
