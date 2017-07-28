@@ -1,7 +1,7 @@
 # Conversation サンプルアプリケーション
 このアプリケーションはWatson Conversationで作ったDialogを簡単に動かすためのものです。
 
-デモ画面
+デモ画面  
 ![デモ](readme_images/conv-sample2.gif)
 
 ## 事前準備
