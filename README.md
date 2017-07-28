@@ -26,9 +26,9 @@
 ### 環境変数のセット
 以下の3つの環境変数の値を事前に調べて、Cloud Foundary管理画面から「ランタイム」「環境変数」を選んで設定します。
 
- WORKSPACE_ID
- CONVERSATION_USERNAME
- CONVERSATION_PASSWORD
+ WORKSPACE_ID  
+ CONVERSATION_USERNAME  
+ CONVERSATION_PASSWORD  
 
 ![setting](readme_images/env-settings.png)
 
