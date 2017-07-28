@@ -2,7 +2,7 @@
 このアプリケーションはWatson Conversationで作ったDialogを簡単に動かすためのものです。
 
 デモ画面  
-![デモ](readme_images/conv-sample2.gif =600x)
+![デモ](https://git.ng.bluemix.net/akaishi/conv-ui-sample/blob/master/readme_images/conv-sample2.gif =600x400)
 
 ## 事前準備
 
@@ -36,3 +36,4 @@
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
 [npm_link]: https://www.npmjs.com/
 [sign_up]: https://bluemix.net/registration
+[demo]: https://git.ng.bluemix.net/akaishi/conv-ui-sample/blob/master/readme_images/conv-sample2.gif
