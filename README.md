@@ -2,7 +2,7 @@
 このアプリケーションはWatson Conversationで作ったDialogを簡単に動かすためのものです。
 
 デモ画面  
-![デモ](readme_images/conv-sample2.gif)
+![デモ](readme_images/conv-sample2.gif =600x)
 
 ## 事前準備
 
