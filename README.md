@@ -5,12 +5,12 @@
 ## 事前準備
 
 * Bluemixアカウントの準備
-    * Bluemixアカウントを作るか(https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson) あるいは既存のBluemixアカウントを利用します。
+    * Bluemixアカウントを作るか[sign_up] あるいは既存のBluemixアカウントを利用します。
 * 次の前提ソフトを導入します。
-    *  [Node.js](https://nodejs.org/#download) runtime, including the [npm][npm_link] package manager
-    *  [Cloud Foundry][cloud_foundry] command-line client
+    *  [Node.js][node_js] Node.js 実行環境 ( [npm][npm_link] パッケージマネージャーを含む )
+    *  [Cloud Foundry][cloud_foundry] コマンドラインツール
 
-      Note: Ensure that you Cloud Foundry version is up to date
+      注意: Cloud Foundaryのバージョンは最新として下さい。
 
 ### ソースのダウンロード
 
@@ -28,6 +28,7 @@ WORKSPACE_ID
 CONVERSATION_USERNAME
 CONVERSATION_PASSWORD
 
+[node_js]: https://nodejs.org/#download
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
-[npm_link]: (https://www.npmjs.com/)
+[npm_link]: https://www.npmjs.com/
 [sign_up]: bluemix.net/registration
