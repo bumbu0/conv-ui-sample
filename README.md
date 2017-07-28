@@ -14,22 +14,18 @@
 
 ### ソースのダウンロード
 
-    ```bash
     git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
-    ```
 
 ### Bluemix環境へのデプロイ
 
-    ```bash
     cd conv-ui-sample
     cf login
     cf push <your_appl_name>
-    ```
 
 ### 環境変数のセット
 
-WORKSPACE_ID
-CONVERSATION_USERNAME
-CONVERSATION_PASSWORD
+ WORKSPACE_ID
+ CONVERSATION_USERNAME
+ CONVERSATION_PASSWORD
 
 
