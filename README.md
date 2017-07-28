@@ -29,3 +29,5 @@ CONVERSATION_USERNAME
 CONVERSATION_PASSWORD
 
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
+[npm_link]: (https://www.npmjs.com/)
+[sign_up]: bluemix.net/registration
