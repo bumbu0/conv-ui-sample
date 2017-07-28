@@ -1,14 +1,14 @@
 # Conversation サンプルアプリケーション
 このアプリケーションはWatson Conversationで作ったDialogを簡単に動かすためのものです。
 
-![デモ](readme_images/conv-sample2.gif)
+デモ画面
+![デモ](readme_images/conv-sample2.gif/100)
 
 ## 事前準備
 
 * Bluemixアカウントの準備
     * [Bluemixアカウントを作る][sign_up] か、あるいは既存のBluemixアカウントを利用します。
 * 次の前提ソフトを導入します。
-    *  [Node.js][node_js] 実行環境 ( [npm][npm_link] パッケージマネージャーを含む )
     *  [Cloud Foundry][cloud_foundry] コマンドラインツール
 
       注意: Cloud Foundaryのバージョンは最新として下さい。
