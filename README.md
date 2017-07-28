@@ -28,7 +28,7 @@ WORKSPACE_ID
 CONVERSATION_USERNAME
 CONVERSATION_PASSWORD
 
-[setting](readme_images/env-settings.png)
+![setting](readme_images/env-settings.png)
 
 [node_js]: https://nodejs.org/#download
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
