@@ -30,10 +30,10 @@
  CONVERSATION_USERNAME  
  CONVERSATION_PASSWORD  
   
-USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情報」「資格情報の表示」を選択
+USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情報」「資格情報の表示」を選択  
 WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから
 「View Deatail」を選択  
-
+  
 ３つの環境変数の値をCloudFoundary管理画面から、「ランタイム」「環境変数」を選択して設定します。
   
 ![setting](readme_images/env-settings.png)
