@@ -23,12 +23,12 @@
     cf login
     cf push <your_appl_name>
 
-### 環境変数のセット
+### 環境変数の確認
 以下の3つの環境変数の値を調べます。
   
- WORKSPACE_ID  
  CONVERSATION_USERNAME  
  CONVERSATION_PASSWORD  
+ WORKSPACE_ID  
   
 USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情報」「資格情報の表示」を選択  
   
@@ -39,6 +39,7 @@ WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワ�
   
 ![workspace](readme_images/conv-workspaceid.png)
   
+### 環境変数のセット
 ３つの環境変数の値をCloudFoundary管理画面から、「ランタイム」「環境変数」を選択して設定します。
   
 ![setting](readme_images/env-settings.png)
