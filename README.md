@@ -15,10 +15,13 @@
       注意: Cloud Foundaryのバージョンは最新として下さい。
 
 ### ソースのダウンロード
+カレントディレクトリのサブディレクトリにソースはダウンロードされるので、あらかじめ適当なサブディレクトリを作り、そこにcdしておきます。
 
     git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
 
 ### Bluemix環境へのデプロイ
+cf loginコマンドではemailとpasswordを聞かれるのでbluemix登録時のemailアドレスとパスワードを指定します。 
+cf pushコマンドで指定する<your_appl_name>はBluemix上のインスタンス名であると同時に、インターネット上のURL名にもなるので、ユニークなものを指定します。  
 
     cd conv-ui-sample
     cf login
