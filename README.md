@@ -35,7 +35,7 @@ USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情�
 ![userid](readme_images/conv-userid.png)
   
 WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから
-「View Deatail」を選択  
+「View Deatails」を選択  
   
 ![workspace](readme_images/conv-workspaceid.png)
   
@@ -43,6 +43,12 @@ WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワ�
 ３つの環境変数の値をCloudFoundary管理画面から、「ランタイム」「環境変数」を選択して設定します。
   
 ![setting](readme_images/env-settings.png)
+
+### アプリケーションのURLと起動
+環境変数を保存すると自動的に再構成が動き出します。しばらくしてこれが完了したら、下記の画面で該当するCloud Foundaryアプリケーションの「経路」のリンクをクリックするとアプリケーションが起動されます。
+
+![call-appl](readme_images/call-appl.png)
+
 
 [node_js]: https://nodejs.org/#download
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
