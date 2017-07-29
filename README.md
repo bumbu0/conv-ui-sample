@@ -9,6 +9,7 @@
 * Bluemixアカウントの準備
     * [Bluemixアカウントを作る][sign_up] か、あるいは既存のBluemixアカウントを利用します。
 * 次の前提ソフトを導入します。
+    *  [git][git] コマンドラインツール
     *  [Cloud Foundry][cloud_foundry] コマンドラインツール
 
       注意: Cloud Foundaryのバージョンは最新として下さい。
@@ -45,13 +46,15 @@ WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワ�
 ![setting](readme_images/env-settings.png)
 
 ### アプリケーションのURLと起動
-環境変数を保存すると自動的に再構成が動き出します。しばらくしてこれが完了したら、下記の画面で該当するCloud Foundaryアプリケーションの「経路」のリンクをクリックするとアプリケーションが起動されます。
+環境変数を保存すると自動的に再構成が動き出します。  
+しばらくしてこれが完了したら、下記の画面で該当するCloud Foundaryアプリケーションの「経路」のリンクをクリックするとアプリケーションが起動されます。
 
 ![call-appl](readme_images/call-appl.png)
 
 
 [node_js]: https://nodejs.org/#download
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
+[git]: https://git-scm.com/downloads
 [npm_link]: https://www.npmjs.com/
 [sign_up]: https://bluemix.net/registration
 [demo]: https://git.ng.bluemix.net/akaishi/conv-ui-sample/blob/master/readme_images/conv-sample2.gif
