@@ -2,7 +2,7 @@
 このアプリケーションはWatson Conversationで作ったDialogを簡単に動かすためのものです。
 
 デモ画面  
-![デモ](readme_images/conv-sample2.gif)
+![デモ](readme_images/conv-demo.gif)
 
 ## 事前準備
 
@@ -30,9 +30,9 @@ cf pushコマンドで指定する<your_appl_name>はBluemix上のインスタ�
 ### 環境変数の確認
 以下の3つの環境変数の値を調べます。
   
- CONVERSATION_USERNAME  
- CONVERSATION_PASSWORD  
- WORKSPACE_ID  
+    CONVERSATION_USERNAME  
+    CONVERSATION_PASSWORD  
+    WORKSPACE_ID  
   
 USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情報」「資格情報の表示」を選択  
   
