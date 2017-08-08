@@ -46,7 +46,7 @@ app.post('/api/message', function(req, res) {
     context: req.body.context || {},
     input: req.body.input || {}
   };
-
+console.log(payload);
   // Send the input to the conversation service
   conversation.message(payload, function(err, data) {
     if (err) {
