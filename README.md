@@ -4,7 +4,7 @@
 デモ画面  
 ![デモ](readme_images/conv-demo.gif)
 
-## 事前準備
+### 事前準備
 
 * Bluemixアカウントの準備
     * [Bluemixアカウントを作る][sign_up] か、あるいは既存のBluemixアカウントを利用します。
@@ -18,6 +18,11 @@
 カレントディレクトリのサブディレクトリにソースはダウンロードされるので、あらかじめ適当なサブディレクトリを作り、そこにcdしておきます。
 
     git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
+
+### サンプルワークスペースの作成
+外部システムとの連携を動かすためには、ワークスペースもサンプルのものにする必要があります。サンプルワークスーペースは下記のパスにありますので、こちらをimportして下さい。
+
+    training/conv-sample-jp.json
 
 ### Bluemix環境へのデプロイ
 cf loginコマンドではemailとpasswordを聞かれるのでbluemix登録時のemailアドレスとパスワードを指定します。 
