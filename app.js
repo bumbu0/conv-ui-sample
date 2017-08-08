@@ -28,11 +28,6 @@ app.use(bodyParser.json());
 
 // Create the service wrapper
 var conversation = new Conversation({
-  // If unspecified here, the CONVERSATION_USERNAME and CONVERSATION_PASSWORD env properties will be checked
-  // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
-  // username: '<username>',
-  // password: '<password>',
-  // url: 'https://gateway.watsonplatform.net/conversation/api',
   version_date: Conversation.VERSION_DATE_2017_04_21
 });
 
@@ -42,8 +37,8 @@ app.post('/api/message', function(req, res) {
   if (!workspace || workspace === '<workspace-id>') {
     return res.json({
       'output': {
-        'text': 'The app has not been configured with a <b>WORKSPACE_ID</b> environment variable. Please refer to the ' + '<a href="https://github.com/watson-developer-cloud/conversation-simple">README</a> documentation on how to set this variable. <br>' + 'Once a workspace has been defined the intents may be imported from ' + '<a href="https://github.com/watson-developer-cloud/conversation-simple/blob/master/training/car_workspace.json">here</a> in order to get a working application.'
-      }
+        'text': '環境変数workspace_idを指定して下さい'
+        }
     });
   }
   var payload = {
@@ -67,30 +62,41 @@ app.post('/api/message', function(req, res) {
  * @param  {Object} response The response from the Conversation service
  * @return {Object}          The response with the updated message
  */
+
+// 検索用ダミーデータ
+var student_list = {
+    '12345': {name: '山田太郎', age: 20}, 
+    '54321': {name: '鈴木一郎', age: 18},
+    '11111': {name: '佐藤花子', age: 19}
+};
+
 function updateMessage(input, response) {
-  var responseText = null;
-  if (!response.output) {
-    response.output = {};
-  } else {
-    return response;
-  }
-  if (response.intents && response.intents[0]) {
-    var intent = response.intents[0];
-    // Depending on the confidence of the response the app can return different messages.
-    // The confidence will vary depending on how well the system is trained. The service will always try to assign
-    // a class/intent to the input. If the confidence is low, then it suggests the service is unsure of the
-    // user's intent . In these cases it is usually best to return a disambiguation message
-    // ('I did not understand your intent, please rephrase your question', etc..)
-    if (intent.confidence >= 0.75) {
-      responseText = 'I understood your intent was ' + intent.intent;
-    } else if (intent.confidence >= 0.5) {
-      responseText = 'I think your intent was ' + intent.intent;
-    } else {
-      responseText = 'I did not understand your intent';
+    var student_id;
+    var student;
+    var student_name;
+    console.log('===response start===');
+    console.log(response);
+    console.log('===response end===');
+    var context = response.context;
+// student_idはダイアログで設定される。
+    if ( context && context.student_id && ! context.student_name ) {    
+        student_id = context.student_id;
+// スタブによるダミー検索。実際は検索用API呼出しとなる。
+        student = student_list[student_id];                             
+        if ( student ) {
+            student_name = student.name;
+            console.log( "student_name: " + student_name);
+// 検索で取得したstudent_nameをcontext変数に設定する。
+            response.context.student_name = student_name;               
+        } else {
+// 検索結果が得られなかった場合ダミーデータを設定する。        
+            response.context.student_name = '該当なし';               
+        }
     }
-  }
-  response.output.text = responseText;
-  return response;
+    if (!response.output) {
+        response.output = {};
+    }
+    return response;
 }
 
 module.exports = app;
