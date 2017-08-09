@@ -39,9 +39,7 @@ app.post('/api/message', function(req, res) {
   var workspace = process.env.WORKSPACE_ID || '<workspace-id>';
   if (!workspace || workspace === '<workspace-id>') {
     return res.json({
-      'output': {
-        'text': '環境変数workspace_idを指定して下さい'
-        }
+      'output': { 'text': '環境変数workspace_idを指定して下さい' }
     });
   }
   var payload = {
@@ -49,7 +47,6 @@ app.post('/api/message', function(req, res) {
     context: req.body.context || {},
     input: req.body.input || {}
   };
-console.log(payload);
   // Send the input to the conversation service
   conversation.message(payload, function(err, data) {
     if (err) {
@@ -77,9 +74,7 @@ function updateMessage(input, response) {
     var student_id;
     var student;
     var student_name;
-    console.log('===response start===');
     console.log(response);
-    console.log('===response end===');
     var context = response.context;
 // student_idはダイアログで設定される。
     if ( context && context.student_id && ! context.student_name ) {    
@@ -91,14 +86,12 @@ function updateMessage(input, response) {
             console.log( "student_name: " + student_name);
 // 検索で取得したstudent_nameをcontext変数に設定する。
             response.context.student_name = student_name;               
-        } else {
 // 検索結果が得られなかった場合ダミーデータを設定する。        
-            response.context.student_name = '該当なし';               
+        } else { 
+            response.context.student_name = '該当なし'; 
         }
     }
-    if (!response.output) {
-        response.output = {};
-    }
+    if (!response.output) { response.output = {}; }
     return response;
 }
 
