@@ -59,8 +59,7 @@ USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情�
   
 ![userid](readme_images/conv-userid.png)  
   
-WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから  
-「View Deatails」を選択  
+WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから「View Deatails」を選択  
   
 ![workspace](readme_images/conv-workspaceid.png)  
   
@@ -76,8 +75,8 @@ CloudantDBへのログ保存を行う場合は、追加で次の２つの環境�
     CLOUDANT_URL  
     CLOUDANT_DBNAME  
     
-環境変数 CLOUDANT_DBNAME が設定されていると、システムは自動的にログの保存を行います。  
-Cloudant 上にCLOUDANT_DBNAMEの名前のDBがない場合は、自動的にDB作成も行います。   
+環境変数 CLOUDANT\_DBNAME が設定されていると、システムは自動的にログの保存を行います。  
+Cloudant上にCLOUDANT\_DBNAMEの名前のDBがない場合は、自動的にDB作成も行います。   
 
 ### アプリケーションのURLと起動
 環境変数を保存すると自動的に再構成が動き出します。  
