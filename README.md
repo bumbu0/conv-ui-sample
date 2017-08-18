@@ -8,18 +8,18 @@
 - 外部システム連携のひな形  
 Conversation APIと外部システムの連携を行う場合の雛形コードが含まれています。外部連携に関するより詳細な解説は xxx を参照して下さい。
 
-- ログ取得
+- ログ取得  
 Cloudant DBのURLとDB名を指定するだけで会話ログが自動的に取得可能です。取得したデータはBluemix上、dashDBと連携してCSVにexportすることも可能です。
 
 
 デモ画面  
-
+  
 ![デモ](readme_images/conv-demo.gif)
-
+  
 ログサンプル  
-
+  
 ![ログ](readme_images/conv-log.png)
-
+  
 ### 事前準備
 
 * Bluemixアカウントの準備
