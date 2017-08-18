@@ -1,5 +1,6 @@
 const Cloudant = require('cloudant');
 const async = require('async');
+const nano = require('nano-seconds');
 
 function CloudandStorage(options) {
     const self = this;
@@ -81,6 +82,25 @@ function CloudandStorage(options) {
         }, callback);
     };
 
+    self.record_log = function(response, callback) {
+        var log_data = {};
+        log_data['_id'] = nano.toString();
+        log_data['timestamp'] = new Date();
+        log_data['conversation_id'] = response.context.conversation_id;
+        log_data['input'] = response.input.text;
+        log_data['output'] = response.output.text[0];
+        if ( response.intents.length ) {
+            var intent = response.intents[0];
+            log_data['intent'] = intent.intent;
+            log_data['intent_confidence'] = intent.confidence;
+        }
+        if ( response.entities.length ) {
+            var entity = response.entities[0];
+            log_data['entity'] = entity.entity;
+            log_data['entity_value'] = entity.value;
+        }
+        self.insert( log_data, callback );
+    }
 }
 
 module.exports = function(options) {

@@ -16,18 +16,18 @@
 
 'use strict';
 
-var express = require('express'); // app server
-var bodyParser = require('body-parser'); // parser for post requests
-var Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
+const express = require('express'); // app server
+const bodyParser = require('body-parser'); // parser for post requests
+const Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
 
-var app = express();
+const app = express();
 
 // Bootstrap application settings
 app.use(express.static('./public')); // load UI from public folder
 app.use(bodyParser.json());
 
 // Create the service wrapper
-var conversation = new Conversation({
+const conversation = new Conversation({
   username: process.env.CONVERSATION_USERNAME,
   password: process.env.CONVERSATION_PASSWORD,
   url: 'https://gateway.watsonplatform.net/conversation/api',
@@ -38,7 +38,7 @@ var conversation = new Conversation({
 var record_log = false;
 if ( process.env.CLOUDANT_DBNAME ) {
     record_log = true;
-    var Cloudant_lib = require('./cloudant_lib');
+    const Cloudant_lib = require('./cloudant_lib');
     var cloudant = new Cloudant_lib({
         cloudantUrl: process.env.CLOUDANT_URL,
         cloudantDbName: process.env.CLOUDANT_DBNAME,
@@ -76,7 +76,7 @@ app.post('/api/message', function(req, res) {
  */
 
 // 検索用ダミーデータ
-var student_list = {
+const student_list = {
     '12345': {name: '山田太郎', age: 20}, 
     '54321': {name: '鈴木一郎', age: 18},
     '11111': {name: '佐藤花子', age: 19}
@@ -106,14 +106,10 @@ function updateMessage(input, response) {
     if (!response.output) { response.output = {}; }
 // Cloudantにログの保存    
     if ( record_log ) {
-        var log_data = Object.assign({ type: 'conv_log', timestamp: new Date()}, response);
-        cloudant.insert( log_data, function( err, msg ){
-            if ( err ) {
-                console.log(err);
-            } else {
-                console.log(msg);
-            }
-        }) 
+        cloudant.record_log( response, function( err, msg ) {
+            if ( err ) {　console.log(err);　}
+            else {　console.log(msg);　}
+        });
     }
     return response;
 }

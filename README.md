@@ -1,8 +1,24 @@
 # Conversation サンプルアプリケーション
-このアプリケーションはWatson Conversationで作ったDialogを簡単に動かすためのものです。
+このアプリケーションはWatson Conversationで作ったDialogを簡単に動かすためのものです。  
+次の点が特徴となっています。  
+  
+- すぐに使えるUI  
+シンプルではありますが、すぐに使えるUI機能を提供しています。
+
+- 外部システム連携のひな形  
+Conversation APIと外部システムの連携を行う場合の雛形コードが含まれています。外部連携に関するより詳細な解説は xxx を参照して下さい。
+
+- ログ取得
+Cloudant DBのURLとDB名を指定するだけで会話ログが自動的に取得可能です。取得したデータはBluemix上、dashDBと連携してCSVにexportすることも可能です。
+
 
 デモ画面  
+
 ![デモ](readme_images/conv-demo.gif)
+
+ログサンプル  
+
+![ログ](readme_images/conv-log.png)
 
 ### 事前準備
 
@@ -46,12 +62,22 @@ USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情�
 WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから
 「View Deatails」を選択  
   
-![workspace](readme_images/conv-workspaceid.png)
+![workspace](readme_images/conv-workspaceid.png)  
+
+CloudantDBへのログ保存を行う場合は、保存先CloudantDBのURL(userid, passwordも含めた形式のもの)についても確認して下さい。
   
 ### 環境変数のセット
 ３つの環境変数の値をCloudFoundary管理画面から、「ランタイム」「環境変数」を選択して設定します。
   
-![setting](readme_images/env-settings.png)
+![setting](readme_images/env-settings.png)  
+  
+CloudantDBへのログ保存を行う場合は、追加で次の２つの環境変数の設定を行います。
+
+    CLOUDANT_URL  
+    CLOUDANT_DBNAME  
+    
+環境変数 CLOUDANT_DBNAME が設定されていると、システムは自動的にログの保存を行います。  
+Cloudant 上にCLOUDANT_DBNAMEの名前のDBがない場合は、自動的にDB作成も行います。   
 
 ### アプリケーションのURLと起動
 環境変数を保存すると自動的に再構成が動き出します。  
