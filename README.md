@@ -57,13 +57,13 @@ cf pushコマンドで指定する<your_appl_name>はBluemix上のインスタ�
   
 USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情報」「資格情報の表示」を選択  
   
-![userid](readme_images/conv-userid.png)
+![userid](readme_images/conv-userid.png)  
   
-WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから
+WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから  
 「View Deatails」を選択  
   
 ![workspace](readme_images/conv-workspaceid.png)  
-
+  
 CloudantDBへのログ保存を行う場合は、保存先CloudantDBのURL(userid, passwordも含めた形式のもの)についても確認して下さい。
   
 ### 環境変数のセット
