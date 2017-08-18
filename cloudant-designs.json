@@ -1,0 +1,12 @@
+{
+  "docs": [
+    {
+      "_id": "_design/convlogs",
+      "views": {
+        "all": {
+          "map": "function (doc) {\n  if (doc.type == \"conv_log\") {\n    emit(doc._id, 1);\n  }\n}"
+        }
+      }
+    }
+  ]
+}

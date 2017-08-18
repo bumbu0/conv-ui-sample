@@ -34,6 +34,18 @@ var conversation = new Conversation({
   version_date: Conversation.VERSION_DATE_2017_04_21
 });
 
+// CLOUDANT_DBNAMEがセットされている場合、Cloudantにログデータを保存する
+var record_log = false;
+if ( process.env.CLOUDANT_DBNAME ) {
+    record_log = true;
+    var Cloudant_lib = require('./cloudant_lib');
+    var cloudant = new Cloudant_lib({
+        cloudantUrl: process.env.CLOUDANT_URL,
+        cloudantDbName: process.env.CLOUDANT_DBNAME,
+        initializeDatabase: true
+    });
+}
+
 // Endpoint to be call from the client side
 app.post('/api/message', function(req, res) {
   var workspace = process.env.WORKSPACE_ID || '<workspace-id>';
@@ -92,6 +104,17 @@ function updateMessage(input, response) {
         }
     }
     if (!response.output) { response.output = {}; }
+// Cloudantにログの保存    
+    if ( record_log ) {
+        var log_data = Object.assign({ type: 'conv_log', timestamp: new Date()}, response);
+        cloudant.insert( log_data, function( err, msg ){
+            if ( err ) {
+                console.log(err);
+            } else {
+                console.log(msg);
+            }
+        }) 
+    }
     return response;
 }
 
