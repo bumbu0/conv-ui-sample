@@ -49,15 +49,21 @@ Cloudant DBのURLとDB名を指定するだけで会話ログが自動的に取�
     CONVERSATION_PASSWORD  
     WORKSPACE_ID  
   
+  
 USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情報」「資格情報の表示」を選択  
+  
   
 ![userid](readme_images/conv-userid.png)  
   
+  
 WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから「View Deatails」を選択  
   
-![workspace](readme_images/conv-workspaceid.png)  
   
+![workspace](readme_images/conv-workspaceid.png)  
+
+    
 CloudantDBへのログ保存を行う場合は、保存先CloudantDBのURL(userid, passwordも含めた形式のもの)についても確認して下さい。
+  
 
 ## ローカル環境へのデプロイ
 
@@ -71,8 +77,8 @@ CloudantDBへのログ保存を行う場合は、保存先CloudantDBのURL(useri
 ### 環境変数の設定
 
 カレントディレクトリにあるexample.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。CLOUDANT_XXXの行はログファイル取得を行う場合にはコメントアウトして、値を設定します。  
-      
-    WORKSPACE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx    CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx    CONVERSATION_PASSWORD=xxxxxxxxxxxx    #CLOUDANT_DBNAME=conv_log    #CLOUDANT_URL='https://xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx-bluemix:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx-bluemix.cloudant.com'      
+          
+    WORKSPACE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx      CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx      CONVERSATION_PASSWORD=xxxxxxxxxxxx      #CLOUDANT_DBNAME=conv_log      #CLOUDANT_URL='https://xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx-bluemix:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx-bluemix.cloudant.com'            
 設定が完了したら、次のコマンドで結果を .envにコピーしたのち、ローカルでnode.jsを起動します。
   
     cp example.env .env
@@ -95,9 +101,11 @@ cf pushコマンドで指定する \<your\_appl\_name\> はBluemix上のイン�
 前の手順でローカル環境でNode.jsを動かしている場合、cf pushコマンドで.envファイルのコピーも行われるので、以下の手順は必要ありません。  
 この手順はローカルでのテストを省いてBluemix上で動かす場合、または継続的開発環境の設定をBluemix上で行いGithub上のソースをBluemix環境に直接デプロイする場合に必要となります。 
   
-３つの環境変数の値をCloudFoundary管理画面から、「ランタイム」「環境変数」を選択して設定します。
+３つの環境変数の値をCloudFoundary管理画面から、「ランタイム」「環境変数」を選択して設定します。  
   
+    
 ![setting](readme_images/env-settings.png)  
+  
   
 CloudantDBへのログ保存を行う場合は、追加で次の２つの環境変数の設定を行います。
 
@@ -109,11 +117,11 @@ Cloudant上にCLOUDANT\_DBNAMEの名前のDBがない場合は、自動的にDB�
 
 ### アプリケーションのURLと起動
 環境変数を保存すると自動的に再構成が動き出します。  
-しばらくしてこれが完了したら、下記の画面で該当するCloud Foundaryアプリケーションの「経路」のリンクをクリックするとアプリケーションが起動されます。
-
+しばらくしてこれが完了したら、下記の画面で該当するCloud Foundaryアプリケーションの「経路」のリンクをクリックするとアプリケーションが起動されます。  
+  
 ![call-appl](readme_images/call-appl.png)
-
-
+  
+  
 [node_js]: https://nodejs.org/#download
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
 [git]: https://git-scm.com/downloads
