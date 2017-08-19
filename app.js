@@ -15,6 +15,7 @@
  */
 
 'use strict';
+require('dotenv').config({silent: true});
 
 const express = require('express'); // app server
 const bodyParser = require('body-parser'); // parser for post requests
@@ -28,11 +29,16 @@ app.use(bodyParser.json());
 
 // Create the service wrapper
 const conversation = new Conversation({
-  username: process.env.CONVERSATION_USERNAME,
-  password: process.env.CONVERSATION_PASSWORD,
-  url: 'https://gateway.watsonplatform.net/conversation/api',
-  version_date: Conversation.VERSION_DATE_2017_04_21
+    username: process.env.CONVERSATION_USERNAME,
+    password: process.env.CONVERSATION_PASSWORD,
+    url: 'https://gateway.watsonplatform.net/conversation/api',
+    version_date: Conversation.VERSION_DATE_2017_04_21
 });
+var workspace_id = process.env.WORKSPACE_ID;
+if (!workspace_id) {
+    console.log('workspace_id is not defined.');
+    return;
+} 
 
 // CLOUDANT_DBNAMEがセットされている場合、Cloudantにログデータを保存する
 var record_log = false;
@@ -46,16 +52,12 @@ if ( process.env.CLOUDANT_DBNAME ) {
     });
 }
 
+var port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
+
 // Endpoint to be call from the client side
 app.post('/api/message', function(req, res) {
-  var workspace = process.env.WORKSPACE_ID || '<workspace-id>';
-  if (!workspace || workspace === '<workspace-id>') {
-    return res.json({
-      'output': { 'text': '環境変数workspace_idを指定して下さい' }
-    });
-  }
   var payload = {
-    workspace_id: workspace,
+    workspace_id: workspace_id,
     context: req.body.context || {},
     input: req.body.input || {}
   };
@@ -66,6 +68,11 @@ app.post('/api/message', function(req, res) {
     }
     return res.json(updateMessage(payload, data));
   });
+});
+
+app.listen(port, function() {
+  // eslint-disable-next-line
+  console.log('Server running on port: %d', port);
 });
 
 /**
@@ -86,7 +93,6 @@ function updateMessage(input, response) {
     var student_id;
     var student;
     var student_name;
-    console.log(response);
     var context = response.context;
 // student_idはダイアログで設定される。
     if ( context && context.student_id && ! context.student_name ) {    
@@ -107,11 +113,9 @@ function updateMessage(input, response) {
 // Cloudantにログの保存    
     if ( record_log ) {
         cloudant.record_log( response, function( err, msg ) {
-            if ( err ) {　console.log(err);　}
-            else {　console.log(msg);　}
+            if ( err ) { console.log(err); }
+            else { console.log(msg); }
         });
     }
     return response;
 }
-
-module.exports = app;
