@@ -42,11 +42,13 @@ git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
 ```
 
 ### サンプルワークスペースの作成
-外部システムとの連携を動かすためには、ワークスペースもサンプルのものにする必要があります。サンプルワークスーペースは下記のパスにありますので、こちらをimportして下さい。
+外部システムとの連携を動かすためには、ワークスペースもサンプルのものにする必要があります。  
+サンプルワークスーペースは下記のパスにありますので、こちらをimportして下さい。
 
 ```
 training/conv-sample-jp.json
 ```
+
 ### 環境変数の確認
 以下の3つの環境変数の値を調べます。
 
@@ -81,9 +83,10 @@ CloudantDBへのログ保存を行う場合は、保存先CloudantDBのURL(useri
 cd conv-ui-sample
 npm install
 ```
+
 ### 環境変数の設定
 
-カレントディレクトリにあるexample.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。CLOUDANT_XXXの行はログファイル取得を行う場合にはコメントアウトして、値を設定します。  
+カレントディレクトリにあるexample.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。CLOUDANT_XXXの行はログファイル取得を行う場合には、行頭の"#"を消して値を設定します。  
 
 ```          
 WORKSPACE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
