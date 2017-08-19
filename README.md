@@ -18,7 +18,12 @@ Cloudant DBのURLとDB名を指定するだけで会話ログが自動的に取�
   
 ログサンプル  
   
-![ログ](readme_images/conv-log.png)
+![ログ](readme_images/conv-log.png)  
+
+cloudantのデータをdashDBに複製した結果 (CSV exportも可能)  
+
+![ログ](readme_images/dashDB.png)  
+  
   
 ## 事前準備
 
