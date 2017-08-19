@@ -82,7 +82,11 @@ npm install
 カレントディレクトリにあるexample.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。CLOUDANT_XXXの行はログファイル取得を行う場合にはコメントアウトして、値を設定します。  
 
 ```          
-WORKSPACE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxCONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxCONVERSATION_PASSWORD=xxxxxxxxxxxx#CLOUDANT_DBNAME=conv_log#CLOUDANT_URL='https://xxxxxxxx-xxxx-xxxx-xxxx-...
+WORKSPACE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+CONVERSATION_PASSWORD=xxxxxxxxxxxx
+#CLOUDANT_DBNAME=conv_log
+#CLOUDANT_URL='https://xxxxxxxx-xxxx-xxxx-xxxx-...
 ```          
 設定が完了したら、次のコマンドで結果を .envにコピーしたのち、ローカルでnode.jsを起動します。
   
