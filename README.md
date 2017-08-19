@@ -26,16 +26,20 @@ Cloudant DBのURLとDB名を指定するだけで会話ログが自動的に取�
    [Bluemixアカウントを作る][sign_up] か、あるいは既存のBluemixアカウントを利用します。
  
 ### 前提ソフトの導入
- 次の前提ソフトを導入します。  
+ 次の前提ソフトを導入します。Node.jsはローカルで動かす場合に必要となります。 
+   
   [gitコマンドラインツール][git]   
-  [Cloud Foundryコマンドラインツール][cloud_foundry] 
+  [Cloud Foundryコマンドラインツール][cloud_foundry]  
+  [Node.js][node_js] 
 
-     注意: Cloud Foundaryのバージョンは最新として下さい。
+  注意: Cloud Foundaryのバージョンは最新として下さい。
 
 ### ソースのダウンロード
 カレントディレクトリのサブディレクトリにソースはダウンロードされるので、あらかじめ適当なサブディレクトリを作り、そこにcdしておきます。
 
-    git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
+```
+git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
+```
 
 ### サンプルワークスペースの作成
 外部システムとの連携を動かすためには、ワークスペースもサンプルのものにする必要があります。サンプルワークスーペースは下記のパスにありますので、こちらをimportして下さい。
