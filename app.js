@@ -15,19 +15,12 @@
  */
 
 'use strict';
+
+// ローカル実行の場合、".env"ファイルから環境変数を読み取る
 require('dotenv').config({silent: true});
 
-const express = require('express'); // app server
-const bodyParser = require('body-parser'); // parser for post requests
+// Conversation用wrapperの初期化
 const Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
-
-const app = express();
-
-// Bootstrap application settings
-app.use(express.static('./public')); // load UI from public folder
-app.use(bodyParser.json());
-
-// Create the service wrapper
 const conversation = new Conversation({
     username: process.env.CONVERSATION_USERNAME,
     password: process.env.CONVERSATION_PASSWORD,
@@ -40,7 +33,7 @@ if (!workspace_id) {
     return;
 } 
 
-// CLOUDANT_DBNAMEがセットされている場合、Cloudantにログデータを保存する
+// CLOUDANT_DBNAMEがセットされている場合、Cloudant用wrapperを初期化する
 var record_log = false;
 if ( process.env.CLOUDANT_DBNAME ) {
     record_log = true;
@@ -51,6 +44,15 @@ if ( process.env.CLOUDANT_DBNAME ) {
         initializeDatabase: true
     });
 }
+
+const express = require('express'); // app server
+const bodyParser = require('body-parser'); // parser for post requests
+const path = require('path');
+const app = express();
+
+// Bootstrap application settings
+app.use(express.static('./public')); // load UI from public folder
+app.use(bodyParser.json());
 
 // Endpoint to be call from the client side
 app.post('/api/message', function(req, res) {
@@ -68,7 +70,8 @@ app.post('/api/message', function(req, res) {
   });
 });
 
-var port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
+// VCAP_APP_PORTが設定されている場合はこのポートでlistenする (Bluemixのお作法)
+var port = process.env.VCAP_APP_PORT || 3000;
 app.listen(port, function() {
   // eslint-disable-next-line
   console.log('Server running on port: %d', port);
