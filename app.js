@@ -70,6 +70,20 @@ app.post('/api/message', function(req, res) {
   });
 });
 
+// default pathの設定
+var debug_mode = process.env.DEBUG_MODE;
+var default_path = path.join(__dirname, 'public');
+if ( debug_mode && debug_mode === 'true' ) {
+    default_path = path.join(default_path, 'index_debug.html');
+} else {
+    default_path = path.join(default_path, 'index_prod.html');
+}
+console.log( "debug_mode: " + debug_mode );
+console.log( default_path );
+app.get('/', function(req, res) {
+    res.sendFile(default_path);
+});
+
 // VCAP_APP_PORTが設定されている場合はこのポートでlistenする (Bluemixのお作法)
 var port = process.env.VCAP_APP_PORT || 3000;
 app.listen(port, function() {

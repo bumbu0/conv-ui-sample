@@ -19,7 +19,7 @@ function GetQueryString() {
 window.onload = function onLoad() {
     var params = GetQueryString();
     console.log(params);
-    if ( params.debug_mode ) {
+    if ( params.debug_mode && params.debug_mode === 'true' ) {
         $('#chat-column-holder').css({'width':''});
         $('.chat-column').css({'width':'','max-width':'25rem','min-width':'9.375rem'});
         $('#payload-column').css({'width':'45%','max-width':'32.0625rem','min-width':'29.6875rem'});
