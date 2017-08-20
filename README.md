@@ -1,15 +1,18 @@
 # Conversation サンプルアプリケーション
-このアプリケーションはWatson Conversationで作ったDialogを簡単に動かすためのものです。  
+このアプリケーションはWaston Developers Cloud上で公開されている[サンプルアプリ][conv_simple]をベースにいくつかの便利機能を追加したものです。  
 次の点が特徴となっています。  
   
 - すぐに使えるUI  
-シンプルではありますが、すぐに使えるUI機能を提供しています。
+元のサンプルアプリでは、デバッグ用のペインが表示されていて、本番利用が難しかったのですが、この表示をなくし、すぐに本番運用で使えるUIを提供しています。   
+また、アプリ起動時のURLパラメータとして  
+  \<url\>?debug_mode=true  
+を追加するとデバッグモードでの動作となり、オリジナルサンプルと同様のデバッグペイン表示が行われます。  
 
 - 外部システム連携のひな形  
 Conversation APIと外部システムの連携を行う場合の雛形コードが含まれています。外部連携に関するより詳細な解説は xxx を参照して下さい。
 
 - ログ取得  
-Cloudant DBのURLとDB名を指定するだけで会話ログが自動的に取得可能です。取得したデータはBluemix上、dashDBと連携してCSVにexportすることも可能です。
+Cloudant DBのURLとDB名を指定するだけで会話ログが自動的に取得可能です。取得したデータは、Bluemix上の設定でdashDBと連携すればCSVにexportすることも可能です。
 
 
 デモ画面  
@@ -47,8 +50,8 @@ git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
 ```
 
 ### サンプルワークスペースの作成
-外部システムとの連携を動かすためには、ワークスペースもサンプルのものにする必要があります。  
-サンプルワークスーペースは下記のパスにありますので、こちらをimportして下さい。
+外部システムとの連携デモを動かすためには、ワークスペースもサンプルのものにする必要があります。  
+サンプルワークスーペースはgitソースコード内の下記のパスにありますので、こちらをConversationにimportして下さい。
 
 ```
 training/conv-sample-jp.json
@@ -148,7 +151,7 @@ Cloudant上にCLOUDANT\_DBNAMEの名前のDBがない場合は、自動的にDB�
   
 ![call-appl](readme_images/call-appl.png)
   
-  
+[conv_simple]: https://github.com/watson-developer-cloud/conversation-simple  
 [node_js]: https://nodejs.org/#download
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
 [git]: https://git-scm.com/downloads
