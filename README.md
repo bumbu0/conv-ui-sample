@@ -2,12 +2,19 @@
 このアプリケーションはWaston Developers Cloud上で公開されている[サンプルアプリ][conv_simple]をベースにいくつかの便利機能を追加したものです。  
 次の点が特徴となっています。  
   
-- すぐに使えるUI  
-元のサンプルアプリでは、デバッグ用のペインが表示されていて、本番利用が難しかったのですが、この表示をなくし、すぐに本番運用で使えるUIを提供しています。   
-また、アプリ起動時のURLパラメータとして  
-  \<url\>?debug_mode=true  
-を追加するとデバッグモードでの動作となり、オリジナルサンプルと同様のデバッグペイン表示が行われます。  
+- 本番ですぐに使えるUI  
+元のサンプルアプリではデバッグ用のペインが表示されていて、本番利用が難しかったのですが、この表示をなくしすぐに本番運用で使えるUIを提供しています。   
 
+- デバッグ表示も可能  
+オリジナルサンプルで使えたデバッグ用のペインを表示することも可能です。  
+このためには次の２つのことを同時に行います。
+  - 環境変数の設定  
+    DEBUG_MODE=trueの設定を環境変数ないしは.envで行います。
+  - URLパラメータの指定  
+    アプリ起動時のURLパラメータとして  
+    \<url\>?debug\_mode=true  
+   を追加します。
+   
 - 外部システム連携のひな形  
 Conversation APIと外部システムの連携を行う場合の雛形コードが含まれています。外部連携に関するより詳細な解説は xxx を参照して下さい。
 
@@ -94,12 +101,14 @@ npm install
 
 ### 環境変数の設定
 
-カレントディレクトリにあるexample.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。CLOUDANT_XXXの行はログファイル取得を行う場合には、行頭の"#"を消して値を設定します。  
+カレントディレクトリにあるexample.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。  
+ログファイル取得を行う場合には、CLOUDANT_XXXの2行の行頭の"#"を消してコメントをはずし、値を設定します。  
 
 ```          
 WORKSPACE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 CONVERSATION_PASSWORD=xxxxxxxxxxxx
+DEBUG_MODE=false
 #CLOUDANT_DBNAME=conv_log
 #CLOUDANT_URL='https://xxxxxxxx-xxxx-xxxx-xxxx-...
 ```          
