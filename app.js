@@ -106,26 +106,25 @@ const student_list = {
 };
 
 function updateMessage(input, response) {
-    var student_id;
-    var student;
-    var student_name;
-    var context = response.context;
-// student_idはダイアログで設定される。
-    if ( context && context.student_id && ! context.student_name ) {    
-        student_id = context.student_id;
+    var output = response.output;
+// 外部連携リクエスト有無をoutput.actionで判断
+    if ( output && output.action && output.action.command ) {
+// 外部連携リクエストが"query_student_name_by_id"の場合の処理
+        if ( output.action.command === "query_student_name_by_id" ) {
+// student_idをoutputパラメータから取得
+            var student_id = output.action.student_id;
 // スタブによるダミー検索。実際は検索用API呼出しとなる。
-        student = student_list[student_id];                             
-        if ( student ) {
-            student_name = student.name;
-            console.log( "student_name: " + student_name);
-// 検索で取得したstudent_nameをcontext変数に設定する。
-            response.context.student_name = student_name;               
-// 検索結果が得られなかった場合ダミーデータを設定する。        
-        } else { 
-            response.context.student_name = '該当なし'; 
+            var student = student_list[student_id];                             
+// 正常終了の場合、検索で取得したstudent.nameをcontext変数に保存
+            if ( student ) {
+                response.context.student_name = student.name;               
+                console.log( "OK student_name: " + student.name);
+// 検索結果が得られなかった場合
+            } else {
+                console.log( "NG student_id: " + student_id);
+            }
         }
-    }
-    if (!response.output) { response.output = {}; }
+    }        
 // Cloudantにログの保存    
     if ( record_log ) {
         cloudant.record_log( response, function( err, msg ) {
