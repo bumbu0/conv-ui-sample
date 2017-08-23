@@ -9,7 +9,7 @@
 オリジナルサンプルで使えたデバッグ用のペインを表示することも可能です。  
 このためには次の２つのことを同時に行います。
   - 環境変数の設定  
-    DEBUG_MODE=trueの設定を環境変数ないしは.envで行います。
+    DEBUG_MODE=trueの設定を環境変数ないしはlocal.envで行います。
   - URLパラメータの指定  
     アプリ起動時のURLパラメータとして  
     \<url\>?debug\_mode=true  
@@ -103,7 +103,13 @@ npm install
 
 ### 環境変数の設定
 
-カレントディレクトリにあるexample.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。  
+カレントディレクトリにあるlocal.env.sampleをlocal.envにコピーします。  
+  
+```
+cp local.env.sample local.env
+```
+  
+local.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。  
 ログファイル取得を行う場合には、CLOUDANT_XXXの2行の行頭の"#"を消してコメントをはずし、値を設定します。  
 
 ```          
@@ -114,10 +120,9 @@ DEBUG_MODE=false
 #CLOUDANT_DBNAME=conv_log
 #CLOUDANT_URL='https://xxxxxxxx-xxxx-xxxx-xxxx-...
 ```          
-設定が完了したら、次のコマンドで結果を .envにコピーしたのち、ローカルでnode.jsを起動します。
+設定が完了したら、次のコマンドでnode.jsを起動します。
   
 ```
-cp example.env .env
 npm start
 ```
 

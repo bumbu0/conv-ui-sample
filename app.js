@@ -16,8 +16,14 @@
 
 'use strict';
 
-// ローカル実行の場合、".env"ファイルから環境変数を読み取る
-require('dotenv').config({silent: true});
+// ローカル実行の場合、"local.env"ファイルから環境変数を読み取る
+const fs = require('fs');
+if (fs.existsSync('local.env')) {
+  console.log('構成情報をlocal.envから取得中');
+  require('dotenv').config({ path: 'local.env' });
+} else {
+  console.log('local.envがないので、環境変数から構成情報を取得します');
+}
 
 // Conversation用wrapperの初期化
 const Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk

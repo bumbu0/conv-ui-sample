@@ -3,5 +3,5 @@ dist/
 temp/
 .idea/
 coverage
-.env
+local.env
 npm-debug.log
