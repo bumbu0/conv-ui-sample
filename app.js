@@ -21,23 +21,19 @@ const fs = require('fs');
 if (fs.existsSync('local.env')) {
   console.log('構成情報をlocal.envから取得します');
   require('dotenv').config({ path: 'local.env' });
-} else {
-  console.log('環境変数から構成情報を取得します');
 }
 
-// Conversation用wrapperの初期化
-const Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
-const conversation = new Conversation({
-    username: process.env.CONVERSATION_USERNAME,
-    password: process.env.CONVERSATION_PASSWORD,
-    url: 'https://gateway.watsonplatform.net/conversation/api',
-    version_date: Conversation.VERSION_DATE_2017_04_21
-});
 var workspace_id = process.env.WORKSPACE_ID;
 if (!workspace_id) {
     console.log('workspace_id is not defined.');
     return;
 } 
+
+// Conversation用wrapperの初期化
+const Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
+const conversation = new Conversation({
+    version_date: Conversation.VERSION_DATE_2017_04_21
+});
 
 // CLOUDANT_DBNAMEがセットされている場合、Cloudant用wrapperを初期化する
 var record_log = false;
