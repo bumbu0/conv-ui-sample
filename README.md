@@ -1,5 +1,8 @@
 # Conversation サンプルアプリケーション
-このアプリケーションはWaston Developers Cloud上で公開されている[サンプルアプリ][conv_simple]をベースにいくつかの便利機能を追加したものです。  
+Watson APIのConversationは、機械学習モデルによる意図分類を含んだチャットボットのフローを簡単に作れるAPIです。
+しかし、このフローを本番の環境で動かすためには、APIの機能でカバーできていないユーザーインターフェイス用のアプリケーションサーバーを別途立てる必要があり、そのための開発も必要でした。
+このサンプルアプリケーションは、この問題を解決するためのものです。
+具体的には、Waston Developers Cloud上で公開されている[サンプルアプリ][conv_simple]を本番で使えるよう修正した上で、いくつかの便利機能を追加しています。  
 次の点が特徴となっています。  
   
 - 本番ですぐに使えるUI  
@@ -119,7 +122,8 @@ CONVERSATION_PASSWORD=xxxxxxxxxxxx
 DEBUG_MODE=false
 #CLOUDANT_DBNAME=conv_log
 #CLOUDANT_URL='https://xxxxxxxx-xxxx-xxxx-xxxx-...
-```          
+```    
+      
 設定が完了したら、次のコマンドでnode.jsを起動します。
   
 ```
