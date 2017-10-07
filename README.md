@@ -1,7 +1,7 @@
 # Conversation サンプルアプリケーション
-Watson APIのConversationは、機械学習モデルによる意図分類を含んだチャットボットのフローを簡単に作れるAPIです。
-しかし、このフローを本番の環境で動かすためには、APIの機能でカバーできていないユーザーインターフェイス用のアプリケーションサーバーを別途立てる必要があり、そのための開発も必要でした。
-このサンプルアプリケーションは、この問題を解決するためのものです。
+Watson APIのConversationは、機械学習モデルによる意図分類を含んだチャットボットのフローを簡単に作れるAPIです。  
+しかし、このフローを本番の環境で動かすためには、APIの機能でカバーできていないユーザーインターフェイス用のアプリケーションサーバーを別途立てる必要があり、そのための開発も必要でした。  
+このサンプルアプリケーションは、この問題を解決するためのものです。  
 具体的には、Waston Developers Cloud上で公開されている[サンプルアプリ][conv_simple]を本番で使えるよう修正した上で、いくつかの便利機能を追加しています。  
 次の点が特徴となっています。  
   
@@ -44,6 +44,10 @@ cloudantのデータをdashDBに複製した結果 (CSV exportも可能)
 
 ### Bluemixアカウントの準備
    [Bluemixアカウントを作る][sign_up] か、あるいは既存のBluemixアカウントを利用します。
+
+### 必要インスタンスの作成
+まだConversationのインスタンスを作成していない場合は、インスタンス作成を行います。  
+また、Cloudantにログを保存したい場合は、Cloudantのインスタンスも作成して下さい。  
  
 ### 前提ソフトの導入
  次の前提ソフトを導入します。Node.jsはローカルで動かす場合に必要となります。 
@@ -90,7 +94,9 @@ WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワ�
 ![workspace](readme_images/conv-workspaceid.png)  
 
     
-CloudantDBへのログ保存を行う場合は、保存先CloudantDBのURL(userid, passwordも含めた形式のもの)についても確認して下さい。
+CloudantDBへのログ保存を行う場合は、保存先CloudantDBのURL(userid, passwordも含めた形式のもの。下図赤枠部分)についても確認し、コピペしてエディタなどに保存して下さい。
+
+![workspace](readme_images/cloudant.png)  
   
 
 ## ローカル環境へのデプロイ
