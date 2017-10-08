@@ -38,10 +38,15 @@ const conversation = new Conversation({
 // CLOUDANT_DBNAMEがセットされている場合、Cloudant用wrapperを初期化する
 var record_log = false;
 if ( process.env.CLOUDANT_DBNAME ) {
+   var credential;
+   if (process.env.VCAP_SERVICES){
+      var env = JSON.parse(process.env.VCAP_SERVICES);
+       credential = env['cloudantNoSQLDB'][0]['credentials'];
+    }
     record_log = true;
     const Cloudant_lib = require('./cloudant_lib');
     var cloudant = new Cloudant_lib({
-        cloudantUrl: process.env.CLOUDANT_URL,
+        cloudantUrl: credential.url,
         cloudantDbName: process.env.CLOUDANT_DBNAME,
         initializeDatabase: true
     });

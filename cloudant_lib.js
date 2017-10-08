@@ -5,7 +5,7 @@ const nano = require('nano-seconds');
 function CloudandStorage(options) {
     const self = this;
     const cloudant = Cloudant({
-//        url: options.cloudantUrl,
+        url: options.cloudantUrl,
         plugin: 'retry',
         retryAttempts: 10,
         retryTimeout: 500
