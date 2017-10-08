@@ -39,33 +39,63 @@ cloudantのデータをdashDBに複製した結果 (CSV exportも可能)
 
 ![ログ](readme_images/dashDB.png)  
   
+# 導入手順
+
+## Bluemixアカウントの準備
+
+[Bluemixアカウントを作る][sign_up] か、あるいは既存のBluemixアカウントを利用します。
+
+## 前提ソフトの導入
+次の前提ソフトを導入します。下記のリンク先からダウンロード後、それぞれ導入して下さい。
+
+[gitコマンドラインツール][git]  
+[Cloud Foundryコマンドラインツール][cloud_foundry]  
   
-## 事前準備
+注意: Cloud Foundaryのバージョンは最新として下さい。 
 
-### Bluemixアカウントの準備
-   [Bluemixアカウントを作る][sign_up] か、あるいは既存のBluemixアカウントを利用します。
-
-### 必要インスタンスの作成
-まだConversationのインスタンスを作成していない場合は、インスタンス作成を行います。  
-また、Cloudantにログを保存したい場合は、Cloudantのインスタンスも作成して下さい。  
+## ソースのダウンロード
+Githubからアプリケーションのソースをダウンロードします。  
+カレントディレクトリのサブディレクトリにソースはダウンロードされるので、あらかじめ適当なサブディレクトリを作り、そこにcdしてから下記のコマンドを実行します。  
+ダウンロード後、できたサブディレクトリにcdします。
  
-### 前提ソフトの導入
- 次の前提ソフトを導入します。Node.jsはローカルで動かす場合に必要となります。 
-   
-  [gitコマンドラインツール][git]   
-  [Cloud Foundryコマンドラインツール][cloud_foundry]  
-  [Node.js][node_js] 
-
-  注意: Cloud Foundaryのバージョンは最新として下さい。
-
-### ソースのダウンロード
-カレントディレクトリのサブディレクトリにソースはダウンロードされるので、あらかじめ適当なサブディレクトリを作り、そこにcdしておきます。
 
 ```
-git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
+$ cd (適当なサブディレクトリ)
+$ git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
+$ cd conv-ui-sample
 ```
 
-### サンプルワークスペースの作成
+## CFコマンドでログイン
+CFコマンドでbluemix環境にログインします。ログイン名、パスワードはBluemixアカウント登録で登録したものを利用します。  
+ログインに成功すると、次のような画面となります。  
+
+```
+$ cf login
+```
+
+![](readme_images/cf-login.png)  
+
+## Conversationサービスの作成
+Conversationサービスをまだ作成していない場合は、次のコマンドで作成します。
+
+```
+$ cf create-service conversation free conversation-1
+$ cf create-service-key conversation-1 myKey
+```
+
+すでに作成済みのConversationと、このアプリケーションを接続したい場合は、manifest.ymlファイル内の、"conversation-1"と記載されている箇所を作成済みConversationサービス名に変更して下さい。(２箇所あります)
+あるいは、管理画面から作成済みサービスの名称を"conversation-1"に変更してもいいです。
+
+## Cloudantサービスの作成(オプション)
+会話ログをCloudantに保存したいが、まだCloudant DBを作成していない場合は、次のコマンドで作成します。不要な場合はスキップします。
+
+```
+$ cf create-service cloudantNoSQLDB Lite cloudant-1
+$ cf create-service-key cloudant-1 myKey
+```
+
+## Conversationサンプルワークスペースの作成
+
 外部システムとの連携デモを動かすためには、ワークスペースもサンプルのものにする必要があります。  
 サンプルワークスーペースはgitソースコード内の下記のパスにありますので、こちらをConversationにimportして下さい。
 
@@ -73,115 +103,55 @@ git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
 training/conv-sample-jp.json
 ```
 
-### 環境変数の確認
-以下の3つの環境変数の値を調べます。
+手順の概要は以下の通りです。
+* Blummixダッシュボードの画面から先ほど作った"conversation-1"サービスを選択
+* 管理画面右上の"Launch tool"ボタンをクリック
+* Watson Conversationの画面が出たら"Log in with IBM ID"
+* 下記の画面が出たら、赤枠で囲んだアイコンをクリックし、ファイル名を指定してワークスペースのインポート
 
-```  
-CONVERSATION_USERNAME  
-CONVERSATION_PASSWORD  
-WORKSPACE_ID  
-```  
-  
-USERNAMEとPASSWORDは、Conversationサービス管理画面から「資格情報」「資格情報の表示」を選択  
-  
-  
-![userid](readme_images/conv-userid.png)  
-  
-  
-WORDSPACE_IDは、Conversaionサービス管理画面から「Launch Tool」ワークスペースごとの詳細メニューから「View Deatails」を選択  
-  
+![](readme_images/conversation-1.png)  
+
+インポートが完了したら、
+* Conversaionサービス管理画面から「Launch Tool」
+* ワークスペースごとの詳細メニューから「View Deatails」を選択  
+で、ワークスペースIDを確認し、エディタなどに保存しておきます。 
   
 ![workspace](readme_images/conv-workspaceid.png)  
 
-    
-CloudantDBへのログ保存を行う場合は、保存先CloudantDBのURL(userid, passwordも含めた形式のもの。下図赤枠部分)についても確認し、コピペしてエディタなどに保存して下さい。
 
-![workspace](readme_images/cloudant.png)  
-  
+## アプリケーションのデプロイ
 
-## ローカル環境へのデプロイ
+Cloudantのログ機能を使いたい場合は、mainfest.ymlファイル内のCloudantに関するコメント行の"#"をはずします。(全部で4行あります)
+次のコマンドを実行します。
+\<service_name\>はなんでもいいのですが、インターネット上のURLの一部となるので、ユニークな名前を指定します。
+(例) conv-ui-aka1
 
-### プログラムの導入
-
-次のコマンドを実行して必要なモジュールを導入します。
 
 ```
-cd conv-ui-sample
-npm install
+$ cf push <service_name>
 ```
 
-### 環境変数の設定
+## 環境変数の設定
 
-カレントディレクトリにあるlocal.env.sampleをlocal.envにコピーします。  
-  
-```
-cp local.env.sample local.env
-```
-  
-local.envをテキストエディタで開いて、下記の項目にそれぞれの値を設定して下さい。  
-ログファイル取得を行う場合には、CLOUDANT_XXXの2行の行頭の"#"を消してコメントをはずし、値を設定します。  
-
-```          
-WORKSPACE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-CONVERSATION_PASSWORD=xxxxxxxxxxxx
-DEBUG_MODE=false
-#CLOUDANT_DBNAME=conv_log
-#CLOUDANT_URL='https://xxxxxxxx-xxxx-xxxx-xxxx-...
-```    
-      
-設定が完了したら、次のコマンドでnode.jsを起動します。
-  
-```
-npm start
-```
-
-正常にNode.jsが起動できていれば、ブラウザから [http://localhost:3000][local_url] のURLでアプリケーションを起動できます。
-  
-## Bluemix環境へのデプロイ
-
-### プログラムの配布
-
-cf loginコマンドではemailとpasswordを聞かれるのでbluemix登録時のemailアドレスとパスワードを指定します。   
-cf pushコマンドで指定する \<your\_appl\_name\> はBluemix上のインスタンス名であると同時に、インターネット上のURL名にもなるので、ユニークなものを指定します。  
-
-```
-cd conv-ui-sample
-cf login
-cf push <your_appl_name>
-```
-  
-### 環境変数のセット
-前の手順でローカル環境でNode.jsを動かしている場合、cf pushコマンドでlocal.envファイルのコピーも行われるので、以下の手順は必要ありません。  
-この手順はローカルでのテストを省いてBluemix上で動かす場合、または継続的開発環境の設定をBluemix上で行いGithub上のソースをBluemix環境に直接デプロイする場合に必要となります。 
-  
-３つの環境変数の値をCloudFoundary管理画面から、「ランタイム」「環境変数」を選択して設定します。  
-  
+環境変数の値WORKSPACE_IDをCloudFoundary管理画面から、「ランタイム」「環境変数」を選択して設定します。  
     
 ![setting](readme_images/env-settings.png)  
   
-  
-CloudantDBへのログ保存を行う場合は、追加で次の２つの環境変数の設定を行います。
+CloudantDBへのログ保存を行う場合は、追加で次の環境変数の設定を行います。
 
 ```
-CLOUDANT_URL  
 CLOUDANT_DBNAME  
 ```
     
 環境変数 CLOUDANT\_DBNAME が設定されていると、システムは自動的にログの保存を行います。  
 Cloudant上にCLOUDANT\_DBNAMEの名前のDBがない場合は、自動的にDB作成も行います。   
 
-### アプリケーションのURLと起動
+## アプリケーションのURLと起動
 環境変数を保存すると自動的に再構成が動き出します。  
 しばらくしてこれが完了したら、下記の画面で該当するCloud Foundaryアプリケーションの「経路」のリンクをクリックするとアプリケーションが起動されます。  
   
 ![call-appl](readme_images/call-appl.png)
-  
-[conv_simple]: https://github.com/watson-developer-cloud/conversation-simple  
-[node_js]: https://nodejs.org/#download
+
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
 [git]: https://git-scm.com/downloads
-[npm_link]: https://www.npmjs.com/
 [sign_up]: https://bluemix.net/registration
-[demo]: https://git.ng.bluemix.net/akaishi/conv-ui-sample/blob/master/readme_images/conv-sample2.gif
-[local_url]: http://localhost:3000

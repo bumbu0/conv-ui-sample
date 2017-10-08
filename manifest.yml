@@ -1,6 +1,15 @@
 ---
+declared-services:
+  conversation-1:
+    label: conversation
+    plan: lite
+  cloudant-1:
+    label: cloudantNoSQLDB
+    plan: lite
 applications:
-- command: npm start
-  path: .
-  memory: 256M
-  instances: 1
+- path: .
+  memory: 128M
+  services:
+  - conversation-1
+  - cloudant-1
+  
