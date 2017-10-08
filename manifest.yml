@@ -3,13 +3,12 @@ declared-services:
   conversation-1:
     label: conversation
     plan: lite
-  cloudant-1:
-    label: cloudantNoSQLDB
-    plan: lite
+#  cloudant-1:
+#    label: cloudantNoSQLDB
+#    plan: lite
 applications:
 - path: .
   memory: 128M
   services:
   - conversation-1
-  - cloudant-1
-  
+#  - cloudant-1

@@ -6,18 +6,18 @@ Watson APIのConversationは、機械学習モデルによる意図分類を含�
 次の点が特徴となっています。  
   
 - 本番ですぐに使えるUI  
-元のサンプルアプリではデバッグ用のペインが表示されていて、本番利用が難しかったのですが、この表示をなくし、すぐに本番運用で使えるUIを提供しています。   
+元のサンプルアプリではデバッグ用のペインが表示されていて本番利用が難しかったのですが、この表示をなくし、すぐに本番運用で使えるUIを提供しています。   
 
-- デバッグ表示も可能  
-オリジナルサンプルで使えたデバッグ用のペインを表示することも可能です。  
+- ログ取得  
+Cloudant DBのインスタンスを作成し、必要な設定をするだけで、会話ログを自動的に保存可能です。  
+保存したデータは、Bluemix上の設定でdashDBと連携すればCSVにexportすることもできます。
    
 - 外部システム連携のひな形  
 Conversation APIと外部システムの連携を行う場合の雛形コードが含まれています。  
 外部連携に関するより詳細なこれから別途作成予定です。
 
-- ログ取得  
-Cloudant DBのURLとDB名を指定するだけで会話ログが自動的に取得可能です。  
-取得したデータは、Bluemix上の設定でdashDBと連携すればCSVにexportすることも可能です。
+- デバッグ表示も可能  
+オリジナルサンプルで使えたデバッグ用のペインを表示することも可能です。  
 
 
 デモ画面  
@@ -115,13 +115,15 @@ training/conv-sample-jp.json
 ![workspace](readme_images/conv-workspaceid.png)  
 
 
+## mainfest.ymlの修正(オプション)
+
+Cloudantのログ機能を使いたい場合は、mainfest.ymlファイル内のCloudantに関するコメント行の"#"をはずします。(全部で4行あります)  
+
 ## アプリケーションのデプロイ
 
-Cloudantのログ機能を使いたい場合は、mainfest.ymlファイル内のCloudantに関するコメント行の"#"をはずします。(全部で4行あります)
 次のコマンドを実行します。
-\<service_name\>はなんでもいいのですが、インターネット上のURLの一部となるので、ユニークな名前を指定します。
+\<service_name\>はなんでもいいのですが、インターネット上のURLの一部となるので、ユニークな名前を指定します。  
 (例) conv-ui-aka1
-
 
 ```
 $ cf push <service_name>
@@ -155,15 +157,23 @@ DEBUG用のペインも表示したい場合は、DEBUG\_MODEに値"true"を指�
 しばらくしてこれが完了したら、アプリケーションの完成です。以下のURLを指定してアプリケーションを起動して下さい。
 
 ```
-https://\<service_name\>.mybluemix.net
+https://<service_name>.mybluemix.net
 ```
 
 デバッグモードで起動したい場合は、以下のURLとします。
 
 ```
-https://\<service_name\>.mybluemix.net?debug\_mode=true
+https://<service_name>.mybluemix.net?debug_mode=true
 ```
 
+ログ取得の設定をしている場合は、簡単な会話を流したあとで、Cloudant DBの管理画面を表示し、ログが取得されていることを確認して下さい。
+
+## 接続先Convesationの切替え方法
+接続先Conversationを切り替えたい場合は、CloudFoundaryアプリケーション管理画面で、サービスのアンバインド(下図参照)を行い、その後で新しいサービスをバインドしなおします。
+
+![setting](readme_images/unbind.png)  
+
+また、環境変数の設定でWORDSPACE_IDの値も変更します。
 
 [conv_simple]: https://github.com/watson-developer-cloud/conversation-simple  
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
