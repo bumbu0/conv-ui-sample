@@ -175,6 +175,43 @@ https://<service_name>.mybluemix.net?debug_mode=true
 
 また、環境変数の設定でWORDSPACE_IDの値も変更します。
 
+
+## アプリケーションの修正
+Bluemixで稼働しているNode.jsアプリケーションのソースは git cloneコマンドでダウンロードしたローカルファイルです。このソースを修正して、再度 "cf push \<service_name\>"コマンドを実行すると、Bluemix上のアプリケーションにも修正が反映されます。  
+自分でアプリケーションコードを開発したい場合は、このサンプルソースを雛形に試してみると、効率よくアプリケーション開発ができます。
+
+
+## ローカルで起動する場合
+
+アプリケーションを修正する時は、ローカルでもテストできる方が便利です。そのための手順は以下の通りです。
+
+* Node.jsの導入  
+ローカルにNode.jsを導入する必要があります。
+[Node.jsダウンロード][node_js]からダウンロードして下さい。
+* 認証情報の確認  
+BluemixダッシュボードからConversationサービスの管理画面を開き、username, passwordの値を調べてテキストエディタなどにコピーします。
+* local.envファイルの設定
+次のコマンドでlocal.envファイルの雛形からlocal.envをコピーし、エディタで調べたusername, passwordを設定します。
+
+```
+$ cp local.env.sample local.env
+```
+
+```
+CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxCONVERSATION_PASSWORD=xxxxxxxxxxxx
+```
+* Node.jsアプリケーションの導入、実行
+以下のコマンドでアプリケーションの導入、実行を行います。
+
+```
+$ npm install
+$ npm start
+```
+
+### (参考) Bluemixとローカル両方で動くアプリの作り方
+qittaに別記事 [Bluemix上のWatsonアプリをローカル環境で開発・デバッグする際のTips](https://qiita.com/makaishi2/items/06dd45ae50891d66aef5) をあげておきましたので、関心ある方はこちらも参考にされて下さい。
+
+[node_js]: https://nodejs.org/ja/download/
 [conv_simple]: https://github.com/watson-developer-cloud/conversation-simple  
 [cloud_foundry]: https://github.com/cloudfoundry/cli#downloads
 [git]: https://git-scm.com/downloads
