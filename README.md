@@ -14,7 +14,7 @@ Cloudant DBのインスタンスを作成し、必要な設定をするだけで
    
 - 外部システム連携のひな形  
 Conversation APIと外部システムの連携を行う場合の雛形コードが含まれています。  
-外部連携に関するより詳細なこれから別途作成予定です。
+外部連携に関するより詳細な解説はこれから別途作成予定です。
 
 - デバッグ表示も可能  
 オリジナルサンプルで使えたデバッグ用のペインを表示することも可能です。  
@@ -198,7 +198,8 @@ $ cp local.env.sample local.env
 ```
 
 ```
-CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxCONVERSATION_PASSWORD=xxxxxxxxxxxx
+CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+CONVERSATION_PASSWORD=xxxxxxxxxxxx
 ```
 * Node.jsアプリケーションの導入、実行
 以下のコマンドでアプリケーションの導入、実行を行います。
