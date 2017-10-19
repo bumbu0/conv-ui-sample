@@ -201,18 +201,27 @@ Bluemixで稼働しているNode.jsアプリケーションのソースは git c
 [Node.jsダウンロード][node_js]からダウンロードして下さい。
 * 認証情報の確認  
 BluemixダッシュボードからConversationサービスの管理画面を開き、username, passwordの値を調べてテキストエディタなどにコピーします。
-* local.envファイルの設定
-次のコマンドでlocal.envファイルの雛形からlocal.envをコピーし、エディタで調べたusername, passwordを設定します。
+
+* local.envファイルのコピー  
+次のコマンドでlocal.envファイルの雛形からlocal.envをコピーします。
 
 ```
 $ cp local.env.sample local.env
 ```
 
+* local.envファイルの編集  
+エディタでlocal.envに以下の変数の値を設定します。このうち、上の三つは必須項目、下の三つはオプション項目です。
+
 ```
-CONVERSATION_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-CONVERSATION_PASSWORD=xxxxxxxxxxxx
+CONVERSATION_USERNAME
+CONVERSATION_PASSWORD
+WORKSPACE_ID
+DEBUG_MODE
+CLOUDANT_DBNAME
+CLOUDANT_URL
 ```
-* Node.jsアプリケーションの導入、実行
+
+* Node.jsアプリケーションの導入、実行  
 以下のコマンドでアプリケーションの導入、実行を行います。
 
 ```
