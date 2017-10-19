@@ -128,13 +128,12 @@ Cloudantのログ機能を使いたい場合は、mainfest.ymlファイル内の
 ```
 $ cf push <service_name>
 ```
+この段階で「アプリケーションの再始動時にエラーが発生しました: 開始は失敗しました」というメッセージがでますが、これはこの直後に設定するWORKSPACE_IDの設定をまだ行っていないためなので、気にせず先に進めます。
 
 ## 環境変数の設定
 
-デブロイが正常に終了したら、CloudFoundary管理画面から、「ランタイム」「環境変数」を選択して環境変数の設定を行います。
+デブロイが終了したら、環境変数の設定を行います。
 設定する項目は次の3つです。
-
-![setting](readme_images/env-settings.png)  
 
 ```
 WORKSPACE_ID
@@ -151,10 +150,22 @@ CLOUDANT\_DBNAMEは、ログの保存をしたい場合に、保存先DB名を�
 
 DEBUG用のペインも表示したい場合は、DEBUG\_MODEに値"true"を指定します。
 この場合、アプリ起動時のURLにも追加オプションを入れる必要があります(後述)。
+それぞれの環境変数を設定するためのコマンドは以下の通りです。
+
+```
+$ cf set-env <service_name> WORKSPACE_ID <workspace_id>
+$ cf set-env <service_name> CLOUDANT_DBNAME <db_name>
+$ cf set-env <service_name> DEBUG_MODE true  
+```
+
+すべての必要な環境変数の設定が終わったら、以下のコマンドでアプリケーションサーバーの再構成を行います。
+
+```
+$ cf restage <service_name>
+```
 
 ## アプリケーションのURLと起動
-環境変数を保存すると自動的に再構成が動き出します。  
-しばらくしてこれが完了したら、アプリケーションの完成です。以下のURLを指定してアプリケーションを起動して下さい。
+しばらくして再構成が完了したら、アプリケーションの完成です。以下のURLを指定してアプリケーションを起動して下さい。
 
 ```
 https://<service_name>.mybluemix.net
