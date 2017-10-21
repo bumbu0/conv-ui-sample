@@ -54,7 +54,7 @@ Githubからアプリケーションのソースをダウンロードします�
 
 ```
 $ cd (適当なサブディレクトリ)
-$ git clone https://git.ng.bluemix.net/akaishi/conv-ui-sample.git
+$ git clone https://github.com/makaishi2/conv-ui-sample.git
 $ cd conv-ui-sample
 ```
 
