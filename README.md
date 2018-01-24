@@ -63,6 +63,7 @@ CFコマンドでbluemix環境にログインします。ログイン名、パ�
 ログインに成功すると、次のような画面となります。  
 
 ```
+$ cf api https://api.ng.bluemix.net
 $ cf login
 ```
 
